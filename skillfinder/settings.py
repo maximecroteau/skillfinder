@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rh.apps.RhConfig',
+    'enigma.apps.EnigmaConfig',
     'widget_tweaks',
 ]
 

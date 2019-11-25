@@ -10,7 +10,7 @@ from .forms import SignUpForm
 
 
 def home(request):
-    return render(request, 'menu/home.html')
+    return render(request, 'enigma/enigma1.html')
 
 
 def signup(request):
@@ -27,6 +27,6 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'menu/signup.html', {
+    return render(request, 'enigma/signup.html', {
         'form': form
     })

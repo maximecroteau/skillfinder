@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from enigma.models import Results
 from django.shortcuts import redirect
 
 from .forms import SignUpForm
@@ -10,7 +11,7 @@ from .forms import SignUpForm
 
 
 def home(request):
-    return render(request, 'enigma/enigma1.html')
+    return render(request, 'menu/home.html')
 
 
 def signup(request):
@@ -27,6 +28,14 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'enigma/signup.html', {
+    return render(request, 'menu/signup.html', {
         'form': form
+    })
+
+
+@login_required
+def dashboard(request):
+    resultats = Results.objects.all()
+    return render(request, 'menu/dashboard.html', {
+        'resultats': resultats,
     })

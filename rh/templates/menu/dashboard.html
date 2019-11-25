@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table class="responsive-table striped col s10 offset-s1 center">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Mail</th>
+            <th>Score</th>
+            <th>Temps total</th>
+            <th>Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for res in resultats %}
+            <tr>
+                <td>{{ res.lastname }}</td>
+                <td>{{ res.firstname }}</td>
+                <td>{{ res.mail }}</td>
+                <td>{{ res.score }}</td>
+                <td>{{ res.time }}</td>
+                <td>a venir</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>Pas cours</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+
+{% endblock %}
+
+

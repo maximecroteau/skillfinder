@@ -5,7 +5,6 @@ from .forms import EnigmaForm
 
 def enigma1_1(request):
     form = EnigmaForm(request.POST)
-    print('test')
     if form.is_valid():
 
         data = form.cleaned_data

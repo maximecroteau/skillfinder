@@ -51,6 +51,6 @@ body {
     flex-direction: column;
 }
 
-img {
-    padding: 30px;
+.fit-picture {
+    height: 300px;
 }

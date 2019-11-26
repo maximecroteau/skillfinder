@@ -39,7 +39,6 @@
     </div>
 </body>
 
-{% block javascript %}
 <script>
     const time_already_spent = parseInt(localStorage.getItem('time_spent')) || 0;
     const timestamp = Math.round(+new Date() / 1000);
@@ -56,5 +55,7 @@
         document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
     }, 1000);
 </script>
+{% block javascript %}
+
 {% endblock %}
 </html>

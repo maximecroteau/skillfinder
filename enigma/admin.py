@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Results, Answers
 # Register your models here.
+from django.contrib.sessions.models import Session
 
 
 class ResultsAdmin(admin.ModelAdmin):
@@ -16,3 +17,4 @@ class AnswersAdmin(admin.ModelAdmin):
 
 admin.site.register(Results, ResultsAdmin)
 admin.site.register(Answers, AnswersAdmin)
+admin.site.register(Session)

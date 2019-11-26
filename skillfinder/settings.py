@@ -131,6 +131,6 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 # A mettre en cas de custom CSS / JS
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)

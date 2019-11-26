@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    </head>
+{% extends "base_enigma.html" %}
 
-    <body>
+
+{% block content %}
         <div class="centered-content">
             <div class="question">Quelle est la moitié de 2 + 2 ?</div>
         </div>
         <div class="form-container">
-            <form action="" method="get" class="form-example">
-                <input type="text" id="1" required>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <input type="text" name="response" id="1" required>
+                <input type="number" name="time" id="1" required>
                 <input type="submit" value="Ok">
             </form>
         </div>
-    </body>
-</html>
+{% endblock %}

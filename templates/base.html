@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 0.8">
-        <title>RH</title>
+        <title>Skills Finder</title>
 
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -26,6 +26,7 @@
 
                     <ul class="left hide-on-med-and-down">
                         <li class="active"><a href="{% url 'home' %}">TSTbase</a></li>
+                        <li><a href="{% url 'dashboard' %}">Tableau de bord</a></li>
                         <li><a href="{% url 'logout' %}">Deconnexion</a></li>
                     </ul>
 
@@ -33,6 +34,7 @@
                         <li class="no-padding">
                             <ul class="collapsible collapsible-accordion">
                                 <li class="active"><a href="{% url 'home' %}" style="color:white">TSTBase</a></li>
+                                <li><a href="{% url 'dashboard' %}" style="color:white">Tableau de bord</a></li>
                                 <li><a href="{% url 'logout' %}" style="color:white">Deconnexion</a></li>
                             </ul>
                         </li>

@@ -39,3 +39,4 @@ def dashboard(request):
     return render(request, 'menu/dashboard.html', {
         'resultats': resultats,
     })
+

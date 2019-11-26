@@ -1,17 +1,22 @@
 {% load staticfiles %}
 <!DOCTYPE HTML>
 <html>
-{% block head %}
     <head>
         {% block meta %}<meta charset="utf-8"> {% endblock %}
+
+        {% block head %}
+
         <meta name = "viewport" content = "width = device-width, initial-scale = 0.8">
         <title>{% block title %}RH{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% block style %}
+        {% endblock %}
+
+        {% endblock %}
     </head>
-{% endblock %}
 
 
 <body>
@@ -33,22 +38,23 @@
     
     </div>
 </body>
+
 {% block javascript %}
 <script>
-    var timestamp = Math.round(+new Date()/1000);
-    console.log(timestamp);
+    const time_already_spent = parseInt(localStorage.getItem('time_spent')) || 0;
+    const timestamp = Math.round(+new Date() / 1000);
     document.getElementById('submit').addEventListener('click', function(){
-            var total = Math.round(+new Date()/1000) - timestamp;
-            document.getElementById('time').value = total;
+        const total_time_spent = parseInt((Math.round(+new Date() / 1000) - timestamp)+ time_already_spent);
+        localStorage.setItem('time_spent', total_time_spent);
+        document.getElementById('time').value = total_time_spent;
     });
 
-    var sec = 0;
+    let sec = 0;
     function pad ( val ) { return val > 9 ? val : "0" + val; }
     setInterval( function(){
         document.getElementById("seconds").innerHTML=pad(++sec%60);
         document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
     }, 1000);
-
 </script>
 {% endblock %}
 </html>

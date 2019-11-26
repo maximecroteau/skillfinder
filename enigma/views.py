@@ -12,7 +12,7 @@ def enigma1(request):
         response = data['response']
         time = data['time']
         responses = [response, time]
-        enigma2(request, responses)
+        return enigma2(request, responses)
     else:
         form = EnigmaForm()
     return render(request, 'enigma/enigma1.html', {

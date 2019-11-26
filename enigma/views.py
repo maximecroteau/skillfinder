@@ -4,7 +4,6 @@ from .forms import EnigmaForm
 
 
 def enigma1(request):
-
     form = EnigmaForm(request.POST)
     if form.is_valid():
 
@@ -20,14 +19,15 @@ def enigma1(request):
     })
 
 
-def enigma2(request, responses):
-    print(responses[0])
-    print(responses[1])
-    form = EnigmaForm(request.POST)
-    if form.is_valid():
-        return render(request, 'enigma/enigma2.html')
-    else:
-        form = EnigmaForm()
-    return render(request, 'enigma/enigma2.html', {
-        'form': form,
-    })
+def enigma2(request):
+    # print(responses[0])
+    # print(responses[1])
+    # form = EnigmaForm(request.POST)
+    # if form.is_valid():
+    #    return render(request, 'enigma/enigma2.html')
+    # else:
+    #    form = EnigmaForm()
+    # return render(request, 'enigma/enigma2.html', {
+    #    'form': form,
+    # })
+    return render(request, 'enigma/enigma2.html')

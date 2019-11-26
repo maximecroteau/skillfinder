@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends "base_enigma.html" %}
 
-    <head>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    </head>
-
-    <body>
+{% block content %}
         <div class="centered-content">
             <img class="fit-picture" src="http://www.psycho-tests.fr/QI/Test-3/Q1.gif" alt="test">
         </div>
@@ -16,6 +10,4 @@
                 <input type="submit" value="Ok">
             </form>
         </div>
-    </body>
-
-</html>
+{% endblock %}

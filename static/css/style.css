@@ -43,6 +43,14 @@ body {
     align-items: flex-end;
 }
 
+.devinette {
+    width: 500px;
+    font-size: 1em;
+    display: flex;
+    align-items: center ;
+    flex-direction: column;
+}
+
 img {
     padding: 30px;
 }

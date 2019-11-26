@@ -7,3 +7,12 @@ class EnigmaForm(forms.Form):
 
     class Meta:
         fields = ('response', 'time')
+
+
+class ContactForm(forms.Form):
+    firstname = forms.CharField(max_length=40, required=True)
+    lastname = forms.CharField(max_length=40, required=True)
+    mail = forms.EmailField(required=True)
+
+    class Meta:
+        fields = ('firstname', 'lastname', 'mail')

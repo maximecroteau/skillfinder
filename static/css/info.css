@@ -1,0 +1,29 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Open Sans,Arial;
+}
+
+
+.centered-content {
+    display: flex;
+    height: calc(100vh - 250px);
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-container {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.info {
+    height: 150px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

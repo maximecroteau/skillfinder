@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse
 
 from .forms import EnigmaForm
+from .forms import ContactForm
+
+from .models import Results
 
 
 def enigma1_1(request):
@@ -122,7 +125,7 @@ def enigma3_1(request):
         print(request.session)
         if response.lower() == "secret":
             request.session['t_31'] = time
-            return redirect('enigma1_2')
+            return redirect('etape1')
     form = EnigmaForm()
     return render(request, 'enigma/enigma3_1.html', {
         'form': form,
@@ -158,10 +161,78 @@ def enigma3_3(request):
         print(request.session)
         if response.lower() == "rdvnatio":
             request.session['t_33'] = time
-            return HttpResponse("Bien joué batard !")
+            return redirect('end')
     form = EnigmaForm()
     return render(request, 'enigma/enigma3_3.html', {
         'form': form,
     })
 
+
+def etape1(request):
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        firstname = data['firstname']
+        lastname = data['lastname']
+        mail = data['mail']
+        request.session['firstname'] = firstname
+        request.session['lastname'] = lastname
+        request.session['mail'] = mail
+        return redirect('enigma1_2')
+    return render(request, 'menu/etape1.html')
+
+
+def etape2(request):
+
+    return render(request, 'menu/etape2.html')
+
+
+def accueil(request):
+    return render(request, 'menu/accueil.html')
+
+
+def end(request):
+
+    try_11 = request.session.get('try_11')
+    t_11 = request.session.get('t_11')
+
+    try_12 = request.session.get('try_12')
+    t_12 = request.session.get('t_12')
+
+    try_13 = request.session.get('try_13')
+    t_13 = request.session.get('t_13')
+
+    try_21 = request.session.get('try_21')
+    t_21 = request.session.get('t_21')
+
+    try_22 = request.session.get('try_22')
+    t_22 = request.session.get('t_22')
+
+    try_23 = request.session.get('try_23')
+    t_23 = request.session.get('t_23')
+
+    try_31 = request.session.get('try_31')
+    t_31 = request.session.get('t_31')
+
+    try_32 = request.session.get('try_32')
+    t_32 = request.session.get('t_32')
+
+    try_33 = request.session.get('try_33')
+    t_33 = request.session.get('t_33')
+
+    firstname = request.session.get('firstname')
+    lastname = request.session.get('lastname')
+    mail = request.session.get('mail')
+
+    total_time = t_33
+    score = 1000
+
+    requete = Results(time=total_time, score=score, firstname=firstname, lastname=lastname, mail=mail, t_answer1_1=t_11,
+                      tentative1_1=try_11, t_answer1_2=t_12, tentative1_2=try_12, t_answer1_3=t_13, tentative1_3=try_13,
+                      t_answer2_1=t_21, tentative2_1=try_21, t_answer2_2=t_22, tentative2_2=try_22, t_answer2_3=t_23,
+                      tentative2_3=try_23, t_answer3_1=t_31, tentative3_1= try_31, t_answer3_2=t_32, tentative3_2=try_32,
+                      t_answer3_3=t_33, tentative3_3=try_33)
+    requete.save()
+
+    return render(request, 'menu/end.html')
 

@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>Résultat</title>
+    </head>
+
+    <body>
+        <div>
+            <form method="POST" class="post-form">
+            {% csrf_token %}
+                <input type="text" name="firstname" id="name" placeholder="Votre prénom" required>
+                <input type="text" name="lastname" id="name" placeholder="Votre nom" required>
+                <input type="email" name="mail" id="email" placeholder="Votre email" required>
+                <input disabled type="submit" value="Envoyer">
+            </form>
+        </div>
+    </body>
+
+</html>

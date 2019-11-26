@@ -19,10 +19,30 @@
 
 <body>
     <div>
-    {% block content %}
+    {% block enigma %}
+    {% endblock %}
+
+    {% block form_enigma %}
+    <div class="form-container">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            <input type="text" name="response" required>
+            <input type="number" name="time" id="time" hidden>
+            <input type="submit" id="submit" value="Ok">
+        </form>
+    </div>
     {% endblock %}
     </div>
 </body>
 {% block javascript %}
+<script>
+    var timestamp = Math.round(+new Date()/1000);
+    console.log(timestamp);
+    document.getElementById('submit').addEventListener('click', function(){
+            var total = Math.round(+new Date()/1000) - timestamp;
+            document.getElementById('time').value = total;
+    });
+
+</script>
 {% endblock %}
 </html>

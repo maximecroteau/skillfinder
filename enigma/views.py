@@ -5,9 +5,11 @@ from .forms import EnigmaForm
 
 def enigma1(request):
     form = EnigmaForm(request.POST)
+    print('test')
     if form.is_valid():
 
         data = form.cleaned_data
+        print(data)
         response = data['response']
         time = data['time']
         responses = [response, time]

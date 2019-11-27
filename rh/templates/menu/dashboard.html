@@ -18,76 +18,80 @@
 {% endblock %}
 
 {% block javascript %}
+    <script type="text/javascript">
 
-<script type="text/javascript">
-
-    function details ( d ) {
-    // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-        '<tr>'+
-            '<td>Tentative énigme 1:</td>'+
-            '<td>'+d.fields.t_answer1_1+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Tentative énigme 2:</td>'+
-            '<td>'+d.fields.t_answer1_2+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Tentative énigme 3:</td>'+
-            '<td>'+d.fields.t_answer1_3+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Tentative énigme 4:</td>'+
-            '<td>'+d.fields.t_answer1_3+'</td>'+
-        '</tr>'+
-    '</table>';
-}
-    $(document).ready(function () {
-        const table = $('#resultats').DataTable({
-            "processing": true,
-            "ajax": {
+        function details ( d ) {
+            var obj = d.fields;
+            var score_logic = (obj.score1_1 + obj.score2_1 + obj.score3_1) /3;
+            var score_tools = (obj.score2_2 + obj.score3_2) / 2;
+            var score_crypto = (obj.score1_2 + obj.score1_3) / 2;
+            var score_stegano = (obj.score2_3 + obj.score3_3) / 2;
+            
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+                '<tr>'+
+                    '<td>Logique : </td>'+
+                    '<td>'+ score_logic +'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Outils web :</td>'+
+                    '<td>'+ score_tools +'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Cryptographie</td>'+
+                    '<td>'+ score_crypto +'</td>'+
+                '</tr>'+
+                '<tr>'+
+                    '<td>Stéganographie</td>'+
+                    '<td>'+ score_stegano +'</td>'+
+                '</tr>'+
+            '</table>';
+        }
+        $(document).ready(function () {
+            const table = $('#resultats').DataTable({
                 "processing": true,
-                "url": "{% url 'resultats_json' %}",
-                "dataSrc": ""
-            },
-
-            "columns": [
-                {
-                    "className": 'details-control',
-                    "orderable": false,
-                    "data": null,
-                    "defaultContent": ''
+                "ajax": {
+                    "processing": true,
+                    "url": "{% url 'resultats_json' %}",
+                    "dataSrc": ""
                 },
-                {"data": "pk"},
-                {"data": "fields.lastname"},
-                {"data": "fields.firstname"},
-                {"data": "fields.mail"},
-                {"data": "fields.score"},
-                {"data": "fields.time"},
-            ],
-            "order": [[1, 'asc']]
+
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {"data": "pk"},
+                    {"data": "fields.lastname"},
+                    {"data": "fields.firstname"},
+                    {"data": "fields.mail"},
+                    {"data": "fields.score"},
+                    {"data": "fields.time"},
+                ],
+                "order": [[1, 'asc']]
+            });
+
+
+            // Add event listener for opening and closing details
+            $('#resultats tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row( tr );
+
+                if ( row.child.isShown() ) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child( details(row.data()) ).show();
+                    tr.addClass('shown');
+                }
+            });
+
         });
-
-
-        // Add event listener for opening and closing details
-        $('#resultats tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row( tr );
-
-            if ( row.child.isShown() ) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
-            }
-            else {
-                // Open this row
-                row.child( details(row.data()) ).show();
-                tr.addClass('shown');
-            }
-        });
-
-    });
-</script>
+    </script>
 {% endblock %}
 
 

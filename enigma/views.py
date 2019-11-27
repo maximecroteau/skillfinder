@@ -192,71 +192,85 @@ def etape2(request):
 def accueil(request):
     return render(request, 'menu/accueil.html')
 
+def get_score(try_nb, time, score_decay): 
+    time_penalty = time if time > score_decay else 1
+    score_penalty = try_nb * time_penalty
+    real_score = 100 - score_penalty
+    return real_score if real_score > 0 else 0
 
 def end(request):
     # 1
     try_11 = request.session.get('try_11')
     t_11 = request.session.get('t_11')
     t_s11 = t_11
+    score1_1 = get_score(try_11, t_s11, 60)
 
     # 2
     try_21 = request.session.get('try_21')
     t_21 = request.session.get('t_21')
     t_s21 = t_21 - t_11
+    score2_1 = get_score(try_21, t_s21, 60)
 
     # 3
     try_31 = request.session.get('try_31')
     t_31 = request.session.get('t_31')
     t_s31 = t_31 - t_21
+    score3_1 = get_score(try_31, t_s31, 60)
 
     # 4
     try_12 = request.session.get('try_12')
     t_12 = request.session.get('t_12')
     t_s12 = t_12 - t_31
+    score1_2 = get_score(try_12, t_s12, 120)
 
     # 5
     try_22 = request.session.get('try_22')
     t_22 = request.session.get('t_22')
     t_s22 = t_22 - t_12
+    score2_2 = get_score(try_22, t_s22, 120)
 
     # 6
     try_32 = request.session.get('try_32')
     t_32 = request.session.get('t_32')
     t_s32 = t_32 - t_22
+    score3_2 = get_score(try_32, t_s32, 120)
 
     # 7
     try_13 = request.session.get('try_13')
     t_13 = request.session.get('t_13')
     t_s13 = t_13 - t_32
+    score1_3 = get_score(try_13, t_s13, 200)
 
     # 8
     try_23 = request.session.get('try_23')
     t_23 = request.session.get('t_23')
     t_s23 = t_23 - t_13
+    score2_3 = get_score(try_23, t_s23, 300)
 
     # 9
     try_33 = request.session.get('try_33')
     t_33 = request.session.get('t_33')
     t_s33 = t_33 - t_23
+    score3_3 = get_score(try_33, t_s33, 300)
 
     firstname = request.session.get('firstname')
     lastname = request.session.get('lastname')
     mail = request.session.get('mail')
 
     total_time = t_33
+    total_score = (score1_1+score2_1+score3_1+score1_2+score2_2+score3_2+score1_3+score2_3+score3_3) /9
 
-    score = 1000
-
-    requete = Results(time=total_time, score=score, firstname=firstname, lastname=lastname, mail=mail,
-                      t_answer1_1=t_s11, tentative1_1=try_11,
-                      t_answer1_2=t_s12, tentative1_2=try_12,
-                      t_answer1_3=t_s13, tentative1_3=try_13,
-                      t_answer2_1=t_s21, tentative2_1=try_21,
-                      t_answer2_2=t_s22, tentative2_2=try_22,
-                      t_answer2_3=t_s23, tentative2_3=try_23,
-                      t_answer3_1=t_s31, tentative3_1=try_31,
-                      t_answer3_2=t_s32, tentative3_2=try_32,
-                      t_answer3_3=t_s33, tentative3_3=try_33)
+    requete = Results(time=total_time, firstname=firstname, lastname=lastname, mail=mail,
+                      t_answer1_1=t_s11, tentative1_1=try_11, score1_1=score1_1,
+                      t_answer1_2=t_s12, tentative1_2=try_12, score2_1=score2_1,
+                      t_answer1_3=t_s13, tentative1_3=try_13, score3_1=score3_1,
+                      t_answer2_1=t_s21, tentative2_1=try_21, score1_2=score1_2,
+                      t_answer2_2=t_s22, tentative2_2=try_22, score2_2=score2_2,
+                      t_answer2_3=t_s23, tentative2_3=try_23, score3_2=score3_2,
+                      t_answer3_1=t_s31, tentative3_1=try_31, score1_3=score1_3,
+                      t_answer3_2=t_s32, tentative3_2=try_32, score2_3=score2_3,
+                      t_answer3_3=t_s33, tentative3_3=try_33, score3_3=score3_3,
+                      score = total_score)
     requete.save()
 
     return render(request, 'menu/end.html')

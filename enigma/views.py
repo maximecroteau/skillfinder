@@ -89,7 +89,7 @@ def enigma2_2(request):
         print(request.session)
         if response.lower() == "vermeil":
             request.session['t_22'] = time
-            return redirect('etape2')
+            return redirect('enigma3_2')
     form = EnigmaForm()
     return render(request, 'enigma/enigma2_2.html', {
         'form': form,
@@ -143,7 +143,7 @@ def enigma3_2(request):
         print(request.session)
         if response.lower() == "virgule":
             request.session['t_32'] = time
-            return redirect('enigma1_3')
+            return redirect('etape2')
     form = EnigmaForm()
     return render(request, 'enigma/enigma3_2.html', {
         'form': form,

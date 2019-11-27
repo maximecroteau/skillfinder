@@ -5,8 +5,8 @@ from django.contrib.sessions.models import Session
 
 
 class ResultsAdmin(admin.ModelAdmin):
-    list_display = ('time', 'score', 'firstname', 'lastname', 'mail', 't_answer1_1', 't_answer1_2', 't_answer1_3',
-                    't_answer2_1', 't_answer2_2', 't_answer2_3', 't_answer3_1', 't_answer3_2', 't_answer3_3')
+    list_display = ('time', 'score', 'firstname', 'lastname', 'mail', 't_answer1_1', 'tentative1_1', 't_answer1_2', 'tentative1_2', 't_answer1_3',
+                    't_answer2_1', 'tentative2_1', 't_answer2_2', 'tentative2_2', 't_answer2_3', 'tentative2_3', 't_answer3_1', 'tentative3_1', 't_answer3_2', 'tentative3_2', 't_answer3_3', 'tentative3_3')
     list_filter = ('time', 'score', 'firstname', 'lastname', 'mail')
 
 

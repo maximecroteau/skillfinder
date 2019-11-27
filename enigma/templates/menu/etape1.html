@@ -3,19 +3,29 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Résultat</title>
+        <link rel="stylesheet" href="{% static 'css/info.css' %}">
+        <title>"hidden" -> "submit"</title>
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
     </head>
 
     <body>
-        <div>
-            <form method="POST" class="post-form">
-            {% csrf_token %}
-                <input type="text" name="firstname" id="name" placeholder="Votre prénom" required>
-                <input type="text" name="lastname" id="name" placeholder="Votre nom" required>
-                <input type="email" name="mail" id="email" placeholder="Votre email" required>
-                <input disabled type="submit" value="Envoyer">
-            </form>
+        <div class="centered-content">
+            <div class="info">
+                <p>Merci d'avoir participé à SkillsFinder.</p>
+                <p>Nous vous recontacterons si vous avez été sélectionné.</p>
+                <form method="POST" class="post-form">
+                {% csrf_token %}
+                    <input type="text" name="firstname" id="name" placeholder="Votre prénom" required>
+                    <input type="text" name="lastname" id="name" placeholder="Votre nom" required>
+                    <input type="email" name="mail" id="email" placeholder="Votre email" required>
+                    <input type="hidden" value="Continuer">
+                    <a href="{% url 'accueil' %}" class="link-start">
+                        <div class="button">
+                            Terminer
+                        </div>
+                    </a>
+                </form>
+            </div>
         </div>
     </body>
 

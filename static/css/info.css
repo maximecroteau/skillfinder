@@ -4,7 +4,6 @@ body {
     font-family: Open Sans,Arial;
 }
 
-
 .centered-content {
     display: flex;
     height: calc(100vh - 250px);

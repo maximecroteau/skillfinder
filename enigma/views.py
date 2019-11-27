@@ -105,7 +105,7 @@ def enigma2_3(request):
         request.session['try_23'] = request.session.get('try_23', 0) + 1
         request.session.modified = True
         print(request.session)
-        if response.lower() == "herodote":
+        if response.lower() == "herodote" or response.lower() == "hérodote" :
             request.session['t_23'] = time
             return redirect('enigma3_3')
     form = EnigmaForm()

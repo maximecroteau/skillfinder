@@ -129,6 +129,7 @@ LOGOUT_REDIRECT_URL = 'home'
 STATIC_URL = '/static/'
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # A mettre en cas de custom CSS / JS
 STATICFILES_DIRS = (

@@ -4,7 +4,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'css/info.css' %}">
-        <title><!-- submit --></title>
+        <title>"hidden" -> "submit"</title>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
     </head>
 
@@ -18,12 +18,12 @@
                     <input type="text" name="firstname" id="name" placeholder="Votre prénom" required>
                     <input type="text" name="lastname" id="name" placeholder="Votre nom" required>
                     <input type="email" name="mail" id="email" placeholder="Votre email" required>
+                    <input type="hidden" value="Continuer">
                     <a href="{% url 'end' %}" class="link-start">
                         <div class="button">
                             Terminer
                         </div>
                     </a>
-                    <!-- <input type="submit" value="Envoyer"> -->
                 </form>
             </div>
         </div>

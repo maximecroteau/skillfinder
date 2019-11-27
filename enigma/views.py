@@ -235,4 +235,3 @@ def end(request):
     requete.save()
 
     return render(request, 'menu/end.html')
-

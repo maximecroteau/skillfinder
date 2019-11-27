@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('enigma1_1', views.enigma1_1, name='enigma1_1'),
+    path('', views.enigma1_1, name='enigma1_1'),
     path('enigma1_2', views.enigma1_2, name='enigma1_2'),
     path('enigma1_3', views.enigma1_3, name='enigma1_3'),
     path('enigma2_1', views.enigma2_1, name='enigma2_1'),

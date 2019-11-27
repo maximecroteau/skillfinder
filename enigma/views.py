@@ -4,7 +4,7 @@ from .forms import EnigmaForm
 from .forms import ContactForm
 
 from .models import Results
-import unidecode 
+import unidecode
 
 
 def enigma1_1(request):

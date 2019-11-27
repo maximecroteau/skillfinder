@@ -43,11 +43,9 @@
     document.getElementById('submit').addEventListener('click', function(){
         document.getElementById('time').value = localStorage.getItem('time_spent') || 0;
     });
-
     let sec = parseInt(localStorage.getItem('time_spent')) || 0;
     document.getElementById('seconds').innerHTML=pad(++sec%60);
     document.getElementById('minutes').innerHTML=pad(parseInt(sec/60,10));
-
     document.getElementById('clock').removeAttribute("hidden");
     function pad ( val ) { return val > 9 ? val : "0" + val; }
     setInterval( function(){

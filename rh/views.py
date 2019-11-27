@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -40,3 +42,8 @@ def dashboard(request):
         'resultats': resultats,
     })
 
+@login_required()
+def resultats_json(request):
+    results_list = Results.objects.all()
+    json = serializers.serialize('json', results_list)
+    return HttpResponse(json, content_type='application/json')

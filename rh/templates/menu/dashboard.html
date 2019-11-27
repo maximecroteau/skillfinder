@@ -1,36 +1,93 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table class="responsive-table striped col s10 offset-s1 center">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Mail</th>
-            <th>Score</th>
-            <th>Temps total</th>
-            <th>Details</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for res in resultats %}
-            <tr>
-                <td>{{ res.lastname }}</td>
-                <td>{{ res.firstname }}</td>
-                <td>{{ res.mail }}</td>
-                <td>{{ res.score }}</td>
-                <td>{{ res.time }}</td>
-                <td>a venir</td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td>Pas cours</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<table id="resultats" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Details</th>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Mail</th>
+        <th>Score</th>
+        <th>Temps total</th>
+    </tr>
+    <tbody></tbody>
+</table>
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+
+    function details ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Tentative énigme 1:</td>'+
+            '<td>'+d.fields.t_answer1_1+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Tentative énigme 2:</td>'+
+            '<td>'+d.fields.t_answer1_2+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Tentative énigme 3:</td>'+
+            '<td>'+d.fields.t_answer1_3+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Tentative énigme 4:</td>'+
+            '<td>'+d.fields.t_answer1_3+'</td>'+
+        '</tr>'+
+    '</table>';
+}
+    $(document).ready(function () {
+        const table = $('#resultats').DataTable({
+            "processing": true,
+            "ajax": {
+                "processing": true,
+                "url": "{% url 'resultats_json' %}",
+                "dataSrc": ""
+            },
+
+            "columns": [
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ''
+                },
+                {"data": "pk"},
+                {"data": "fields.lastname"},
+                {"data": "fields.firstname"},
+                {"data": "fields.mail"},
+                {"data": "fields.score"},
+                {"data": "fields.time"},
+            ],
+            "order": [[1, 'asc']]
+        });
 
 
+        // Add event listener for opening and closing details
+        $('#resultats tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row( tr );
+
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( details(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        });
+
+    });
+</script>
 {% endblock %}
 
 

@@ -5,3 +5,23 @@ td.details-control {
 tr.shown td.details-control {
     background: url('../pic/details_close.png') no-repeat center center;
 }
+
+center {
+    height: calc(100vh - 20px);
+    display: flex;
+    align-items: center;
+}
+
+.grid-container {
+    padding: 20px;
+}
+
+table.dataTable thead th {
+    border: 2px solid #4e96c2;
+    background-color: #4e96c2;
+    color: #fff;
+}
+
+.brand-logo{
+    font-family: 'Oleo Script', cursive;
+}

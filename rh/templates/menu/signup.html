@@ -16,7 +16,7 @@
         <center>
 
         <div class="col s6 offset-s3">
-            <h2 class="flow-text red-text darken-2 logo">S'inscrire</h2>
+            <h2 class="flow-text blue-text lighten-2 logo">S'inscrire</h2>
                 <form method="post">
                     <div class="input-field">
                     {% csrf_token %}
@@ -29,8 +29,8 @@
                         </p>
                     {% endfor %}
 
-                    <button class="btn waves-effect red darken-2 btn-co" type="submit" name="action">Confirmer</button>
-                    <a class="btn waves-effect red darken-2 btn-co" href="{% url 'login' %}">Se connecter</a>
+                    <button class="btn waves-effect blue lighten-1 btn-co" type="submit" name="action">Confirmer</button>
+                    <a class="btn waves-effect blue lighten-1 btn-co" href="{% url 'login' %}">Se connecter</a>
                     </div>
                 </form>
             </div>

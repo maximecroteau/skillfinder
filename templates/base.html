@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Oleo+Script&display=swap" rel="stylesheet">
 
     </head>
 {% endblock %}
@@ -23,20 +24,20 @@
     {% if user.is_authenticated %}
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper red darken-2">
-                    <a href="{% url 'dashboard' %}" class="brand-logo right">RH</a>
+                <div class="nav-wrapper blue lighten-1">
+                    <a href="{% url 'dashboard' %}" class="brand-logo right">SkillsFinder</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
 
                     <ul class="left hide-on-med-and-down">
-                        <li class="active"><a href="{% url 'dashboard' %}">SkillsFinder</a></li>
-                        <li><a href="{% url 'logout' %}">Deconnexion</a></li>
+                        <li class="active"><a href="{% url 'dashboard' %}">Accueil</a></li>
+                        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
                     </ul>
 
-                    <ul id="mobile-demo" class="side-nav red darken-2">
+                    <ul id="mobile-demo" class="side-nav blue lighten-1">
                         <li class="no-padding">
                             <ul class="collapsible collapsible-accordion">
-                                <li class="active"><a href="{% url 'dashboard' %}" style="color:white">SkillsFinder</a></li>
-                                <li><a href="{% url 'logout' %}" style="color:white">Deconnexion</a></li>
+                                <li class="active"><a href="{% url 'dashboard' %}" style="color:white">Accueil</a></li>
+                                <li><a href="{% url 'logout' %}" style="color:white">Déconnexion</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -46,12 +47,12 @@
     {% else %}
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper red darken-2"> <a href="{% url 'dashboard' %}" class="brand-logo right">RH</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
+                <div class="nav-wrapper blue lighten-1"> <a href="{% url 'dashboard' %}" class="brand-logo right">SkillsFinder</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{% url 'signup' %}" style="color:white">S'inscrire</a></li>
                         <li><a href="{% url 'login' %}" style="color:white">Connexion</a></li>
                     </ul>
-                    <ul id="mobile-demo" class="side-nav red darken-2">
+                    <ul id="mobile-demo" class="side-nav blue lighten-1">
                         <li class="no-padding">
                             <ul class="collapsible collapsible-accordion">
                                 <li><a href="{% url 'signup' %}" style="color:white">S'inscrire</a></li>
@@ -67,7 +68,7 @@
 
 {% endblock %}
 
-<div>
+<div class="grid-container">
     {% block content %}
     {% endblock %}
 </div>

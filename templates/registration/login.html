@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 </head>
 
 <body>
 <div class="row mt50">
     <center>
-        <div class="col s6 offset-s3">
-            <h2 class="flow-text red-text center-align darken-2 logo">Se connecter</h2>
+        <div class="col s4 offset-s4">
+            <h2 class="flow-text blue-text center-align lighten-2 logo">Se connecter</h2>
 
             {% if form.errors %}
-                <p class="red-text darken-2"><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+                <p class="blue-text lighten-2"><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
             {% endif %}
             <div class="input-field">
                 <form method="post" action=".">
@@ -30,8 +31,8 @@
                         <input type="password" name="password" placeholder="Mot de passe" required id="id_password">
                     </div>
                     <div>
-                        <button class="btn waves-effect red darken-2" type="submit" name="action">Connexion</button>
-                        <a class="btn waves-effect red darken-2" href="{% url 'signup' %}">S'inscrire</a>
+                        <button class="btn waves-effect blue lighten-1" type="submit" name="action">Connexion</button>
+                        <a class="btn waves-effect blue lighten-1" href="{% url 'signup' %}">S'inscrire</a>
                     </div>
                 </form>
             </div>

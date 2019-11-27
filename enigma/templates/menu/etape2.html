@@ -10,9 +10,9 @@
 
 <body>
     <h1>Not Found</h1>
-    <p>The requested URL / was not found on this server.</p>
+    <p>The requested URL {% url 'etape2' %} was not found on this server.</p>
     <hr>
-    <i>Apache/000.0.00 <span class="pointer">(SkillFinder)</span> Server at www.example.com Port 00</i>
+    <i>Apache/000.0.00 <a href="{% url 'enigma1_3' %}" class="link-404">(Step 3)</a> Server at www.example.com Port 00</i>
 </body>
 
 </html>

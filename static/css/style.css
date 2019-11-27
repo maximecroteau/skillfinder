@@ -4,6 +4,13 @@ body {
     font-family: Open Sans,Arial;
 }
 
+#clock {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    font-size: 2em;
+}
+
 .centered-content {
     display: flex;
     height: calc(100vh - 250px);

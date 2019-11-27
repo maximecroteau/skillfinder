@@ -9,9 +9,7 @@
         <meta name = "viewport" content = "width = device-width, initial-scale = 0.8">
         <title>{% block title %}RH{% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         {% block style %}
         {% endblock %}
 
@@ -21,38 +19,42 @@
 
 <body>
     <div>
-        <span id="minutes"></span>:<span id="seconds"></span>
-    {% block enigma %}
-    {% endblock %}
+        <div id="clock" hidden>
+            <span id="minutes">00</span>:<span id="seconds">00</span>
+        </div>
+        
+        {% block enigma %}
+        {% endblock %}
 
-    {% block form_enigma %}
-    <div class="form-container">
-        <form method="POST" class="post-form">
-            {% csrf_token %}
-            <input type="text" name="response" required>
-            <input type="number" name="time" id="time" hidden>
-            <input type="submit" id="submit" value="Ok">
-        </form>
-    </div>
-    {% endblock %}
+        {% block form_enigma %}
+        <div class="form-container">
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <input type="text" name="response" required>
+                <input type="number" name="time" id="time" hidden>
+                <input type="submit" id="submit" value="Ok">
+            </form>
+        </div>
+        {% endblock %}
     
     </div>
 </body>
 
 <script>
-    const time_already_spent = parseInt(localStorage.getItem('time_spent')) || 0;
-    const timestamp = Math.round(+new Date() / 1000);
     document.getElementById('submit').addEventListener('click', function(){
-        const total_time_spent = parseInt((Math.round(+new Date() / 1000) - timestamp)+ time_already_spent);
-        localStorage.setItem('time_spent', total_time_spent);
-        document.getElementById('time').value = total_time_spent;
+        document.getElementById('time').value = localStorage.getItem('time_spent') || 0;
     });
 
-    let sec = 0;
+    let sec = parseInt(localStorage.getItem('time_spent')) || 0;
+    document.getElementById('seconds').innerHTML=pad(++sec%60);
+    document.getElementById('minutes').innerHTML=pad(parseInt(sec/60,10));
+
+    document.getElementById('clock').removeAttribute("hidden");
     function pad ( val ) { return val > 9 ? val : "0" + val; }
     setInterval( function(){
-        document.getElementById("seconds").innerHTML=pad(++sec%60);
-        document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+        document.getElementById('seconds').innerHTML=pad(++sec%60);
+        document.getElementById('minutes').innerHTML=pad(parseInt(sec/60,10));
+        localStorage.setItem('time_spent', sec)
     }, 1000);
 </script>
 {% block javascript %}

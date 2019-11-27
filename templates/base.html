@@ -24,20 +24,18 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper red darken-2">
-                    <a href="{% url 'home' %}" class="brand-logo right">RH</a>
+                    <a href="{% url 'dashboard' %}" class="brand-logo right">RH</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
 
                     <ul class="left hide-on-med-and-down">
-                        <li class="active"><a href="{% url 'home' %}">TSTbase</a></li>
-                        <li><a href="{% url 'dashboard' %}">Tableau de bord</a></li>
+                        <li class="active"><a href="{% url 'dashboard' %}">SkillsFinder</a></li>
                         <li><a href="{% url 'logout' %}">Deconnexion</a></li>
                     </ul>
 
                     <ul id="mobile-demo" class="side-nav red darken-2">
                         <li class="no-padding">
                             <ul class="collapsible collapsible-accordion">
-                                <li class="active"><a href="{% url 'home' %}" style="color:white">TSTBase</a></li>
-                                <li><a href="{% url 'dashboard' %}" style="color:white">Tableau de bord</a></li>
+                                <li class="active"><a href="{% url 'dashboard' %}" style="color:white">SkillsFinder</a></li>
                                 <li><a href="{% url 'logout' %}" style="color:white">Deconnexion</a></li>
                             </ul>
                         </li>
@@ -48,7 +46,7 @@
     {% else %}
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper red darken-2"> <a href="{% url 'home' %}" class="brand-logo right">RH</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
+                <div class="nav-wrapper red darken-2"> <a href="{% url 'dashboard' %}" class="brand-logo right">RH</a> <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:white">menu</i></a>
                     <ul class="left hide-on-med-and-down">
                         <li><a href="{% url 'signup' %}" style="color:white">S'inscrire</a></li>
                         <li><a href="{% url 'login' %}" style="color:white">Connexion</a></li>

@@ -10,7 +10,7 @@
         <th>Prénom</th>
         <th>Mail</th>
         <th>Score</th>
-        <th>Temps total</th>
+        <th>Temps total(secondes)</th>
     </tr>
     <tbody></tbody>
 </table>
@@ -24,16 +24,16 @@
         // `d` is the original data object for the row
         return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
             '<div class="row">' +
-            '<div class="col s4"><canvas id="bar-chart-attempt-' + d.pk + '"></canvas></div>' +
-            '<div class="col s4"><canvas id="bar-chart-time-' + d.pk + '"></canvas></div>' +
-            '<div class="col s4"><canvas id="bar-chart-skill-' + d.pk + '"></canvas></div>' +
+            '<div class="col l4 s6"><canvas id="bar-chart-attempt-' + d.pk + '"></canvas></div>' +
+            '<div class="col l4 s6"><canvas id="bar-chart-skill-' + d.pk + '"></canvas></div>' +
+            '<div class="col l4 s6"><canvas id="bar-chart-time-' + d.pk + '"></canvas></div>' +
             '</div>' +
             '</table>';
     }
 
-    function chart_bar(element_id, labels_x, data, label, title, type = 'bar') {
+    function chart_bar(element_id, labels_x, data, label, title) {
         new Chart(document.getElementById(element_id), {
-            type: type,
+            type: 'bar',
             data: {
                 labels: labels_x,
                 datasets: [
@@ -60,6 +60,33 @@
             }
         });
     }
+
+        function chart_radar(element_id, labels_x, data, label) {
+            new Chart(document.getElementById(element_id), {
+                type: 'radar',
+                data: {
+                    labels: labels_x,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        borderWidth: 2,
+                        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                        hoverBorderColor: "rgba(255,99,132,1)"
+                    }]
+                },
+                options: options = {
+                    scale: {
+                        angleLines: {
+                            display: false
+                        },
+                    }
+                }
+
+
+            });
+        }
 
     $(document).ready(function () {
         const table = $('#resultats').DataTable({
@@ -130,7 +157,7 @@
 
                 chart_bar('bar-chart-attempt-' + data.pk, labels_x, Object.values(data_attempt), 'Nombre de tentatives', 'Nombre de tentatives pour chaque énigme');
                 chart_bar('bar-chart-time-' + data.pk, labels_x, Object.values(data_time), 'Temps(en secondes)', 'Temps pour chaque énigme');
-                chart_bar('bar-chart-skill-' + data.pk, labels_skill, Object.values(data_skill), 'Points', 'Point pour chaque compétence', 'radar');
+                chart_radar('bar-chart-skill-' + data.pk, labels_skill, Object.values(data_skill), 'Evaluation des compétences');
                 tr.addClass('shown');
             }
         });
